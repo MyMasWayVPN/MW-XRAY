@@ -80,6 +80,8 @@ cd
 #install tools/alat
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-tools.sh && chmod +x install-tools.sh && ./install-tools.sh
 #
+wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/auto-pointing.sh && chmod +x auto-pointing.sh && ./auto-pointing.sh
+#
 #Instal Xray
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
 #install xmenu
