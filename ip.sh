@@ -54,7 +54,7 @@ wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/updatedll.s
 #
 #SELESAI
 clear
-PLEASE WAIT
+echo "Please Wait"
 sleep 5
 certv2ray
 echo " "
