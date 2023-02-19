@@ -51,7 +51,7 @@ apt-get update && apt-get upgrade -y && update-grub && sleep 2 && reboot
 - maka proses install akan berjalan, jangan keluar dari vps
 - jika keluar dari vps saat lagi proses install,maka akan gagal
 ```
-wget https://raw.githubusercontent.com/MyMasWayVPN/XRAY/main/ip.sh && chmod +x ip.sh && ./ip.sh
+wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/ip.sh && chmod +x ip.sh && ./ip.sh
 ```
 4. jika sudah selesai,lalu ketik xmenu untuk menampilkan menu
 
