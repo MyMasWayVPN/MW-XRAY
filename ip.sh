@@ -29,9 +29,16 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # =========================================
 # Getting
-MYIP=$(wget -qO- ipinfo.io/ip);
+MYIP=$(curl -sS ipv4.icanhazip.com)
 echo "Checking VPS"
-IZIN=$(wget -qO- ipinfo.io/ip);
+#########################
+IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m"
+else
+echo -e "\e[31mPermission Denied!\e[0m";
+exit 0
+fi
 clear
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
@@ -46,6 +53,10 @@ wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-xray.sh 
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/updatedll.sh && chmod +x updatedll.sh && ./updatedll.sh
 #
 #SELESAI
+clear
+PLEASE WAIT
+sleep 5
+certv2ray
 echo " "
 echo "Installation has been completed!!"echo " "
 echo "============================================================================" | tee -a log-install.txt
@@ -85,11 +96,13 @@ echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo " Reboot 15 Sec"
-sleep 15
 cd
 rm -rf updatedll
 rm -rf updatedll.sh
 rm -rf ip.sh
 rm -rf install-xray.sh
 rm -rf install-tools.sh
+rm -rf auto-pointing.sh
+sleep 15
+reboot
 
