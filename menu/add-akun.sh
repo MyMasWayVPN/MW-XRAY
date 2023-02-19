@@ -74,6 +74,11 @@ sed -i '/#vmessgrpc$/a\#& '"$user $exp"'\
 
 #
 systemctl restart xray
+#buatvmess
+vmesslinkws="vmess://${uuid}@${domain}:443?path=/mw-vmws&security=tls&encryption=none&type=ws#${user}"
+vmesslinknon="vmess://${uuid}@${domain}:80?path=/mw-vmws&encryption=none&type=ws#${user}"
+vmesslinkgrpc="vmess://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=mw-vmgrpc&sni=www.masway.com#${user}"
+
 #buatvless
 vlesslinkws="vless://${uuid}@${domain}:443?path=/mw-vlws&security=tls&encryption=none&type=ws#${user}"
 vlesslinknon="vless://${uuid}@${domain}:80?path=/mw-vlws&encryption=none&type=ws#${user}"
@@ -320,6 +325,7 @@ echo -e "INFORMASI AKUN VPN XRAY" | tee -a /etc/log-create-user.log
 echo -e "IP: $MYIP" | tee -a /etc/log-create-user.log
 echo -e "Host/Domain: $domain" | tee -a /etc/log-create-user.log
 echo -e "Password/ID: $uuid" | tee -a /etc/log-create-user.log
+echo -e "Expired: $exp" | tee -a /etc/log-create-user.log
 echo -e "====== Service Port =======" | tee -a /etc/log-create-user.log
 echo -e "Websocket TLS  : 443" | tee -a /etc/log-create-user.log
 echo -e "Websocket HTTP : 80" | tee -a /etc/log-create-user.log
@@ -328,17 +334,20 @@ echo -e "*Note OPOK: opok only supports coremeta"
 echo -e "*Note SHADOWSOCKS: gunakan custom config atau plugin xray"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e ""
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Protokol VPN: TROJAN" | tee -a /etc/log-create-user.log
 echo -e "Network: WS/GRPC" | tee -a /etc/log-create-user.log
 echo -e "====== Path =======" | tee -a /etc/log-create-user.log
 echo -e "=> WS TLS : /mw-trws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-trgrpc" | tee -a /etc/log-create-user.log
 echo -e "=> OPOK   : ws://bugcom/mw-trws" | tee -a /etc/log-create-user.log
-echo -e "====== Import Config From Clipboard =======" | tee -a /etc/log-create-user.log
-echo -e "Link Config WS TLS   : $trojanlinkws" | tee -a /etc/log-create-user.log
-echo -e "Link Config GRPC TLS : $trojanlinkgrpc" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Trojan WS TLS   : $trojanlinkws" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Trojan GRPC TLS : $trojanlinkgrpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e ""
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Protokol VPN: SHADOWSOCKS" | tee -a /etc/log-create-user.log
 echo -e "Network: WS/GRPC" | tee -a /etc/log-create-user.log
 echo -e "Method Cipers : aes-128-gcm" | tee -a /etc/log-create-user.log
@@ -346,20 +355,27 @@ echo -e "====== Path =======" | tee -a /etc/log-create-user.log
 echo -e "=> WS TLS : /mw-ssws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-ssgrpc" | tee -a /etc/log-create-user.log
 echo -e "=> OPOK   : ws://bugcom/mw-ssws" | tee -a /etc/log-create-user.log
-echo -e "======Custom Import Config From URL =======" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "URL Custom Config WS TLS   : http://${domain}:89/mw-ssws-$user.txt" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "URL Custom Config GRPC TLS : http://${domain}:89/mw-ssgrpc-$user.txt" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e ""
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Protokol VPN: VLESS" | tee -a /etc/log-create-user.log
 echo -e "Network: WS/GRPC" | tee -a /etc/log-create-user.log
 echo -e "====== Path =======" | tee -a /etc/log-create-user.log
 echo -e "=> WS TLS : /mw-vlws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-vlgrpc" | tee -a /etc/log-create-user.log
 echo -e "=> OPOK   : ws://bugcom/mw-vlws" | tee -a /etc/log-create-user.log
-echo -e "====== Import Config From Clipboard =======" | tee -a /etc/log-create-user.log
-echo -e "Link Config WS TLS    : $vlesslinkws" | tee -a /etc/log-create-user.log
-echo -e "Link Config GRPC TLS  : $vlesslinkgrpc" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vless WS TLS    : $vlesslinkws" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vless WS Port 80   : $vlesslinknon" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vless GRPC Port 443  : $vlesslinkgrpc" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e ""
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Protokol VPN: VMESS" | tee -a /etc/log-create-user.log
 echo -e "Alter ID: 0" | tee -a /etc/log-create-user.log
@@ -368,6 +384,12 @@ echo -e "====== Path =======" | tee -a /etc/log-create-user.log
 echo -e "=> WS TLS : /mw-vmws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-vmgrpc" | tee -a /etc/log-create-user.log
 echo -e "=> OPOK   : ws://bugcom/mw-vmws" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vmess WS/TLS Port 443   : $vmesslinkws" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vmess WS Port 80   : $vmesslinknon" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vmess GRPC Port 443  : $vmesslinkgrpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "SCRIPT By MasWayVPN" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log

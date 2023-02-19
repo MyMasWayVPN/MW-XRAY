@@ -23,7 +23,6 @@ rm -r updatedll
 # download
 #
 cd /usr/bin
-wget -O xmenu "https://github.com/mymasway/myscvpn/raw/mw/ssh/speedtest_cli.py"
 wget -O xmenu "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/xmenu.sh"
 wget -O add-akun "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/add-akun.sh"
 wget -O updatedll "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/updatedll.sh"
@@ -42,10 +41,11 @@ chmod +x /usr/bin/xmenu
 chmod +x xmenu
 chmod +x add-akun
 chmod +x delete-akun
-chmod +x speedtest
 chmod +x updatedll
 chmod +x add-akun
+chmod +x /usr/bin/certv2ray
 chmod +x certv2ray
+./certv2ray
 chmod +x restart-xray
 chmod +x auto-pointing
 chmod +x cek-port
