@@ -24,26 +24,7 @@ do
 done < /root/expired.txt
 rm /root/expired.txt
 Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | grep $MYIP | awk '{print $2}')
-#!/bin/bash
 clear
-echo -e "\e[36m╒════════════════════════════════════════════╕\033[0m"
-echo -e " \E[0;41;36m                 INFO SERVER                \E[0m"
-echo -e "\e[36m╘════════════════════════════════════════════╛\033[0m"
-uphours=`uptime -p | awk '{print $2,$3}' | cut -d , -f1`
-upminutes=`uptime -p | awk '{print $4,$5}' | cut -d , -f1`
-uptimecek=`uptime -p | awk '{print $6,$7}' | cut -d , -f1`
-cekup=`uptime -p | grep -ow "day"`
-IP=$(curl -s ipinfo.io/ip )
-ISPVPS=$( curl -s ipinfo.io/org )
-#clear
-if [ "$cekup" = "day" ]; then
-echo -e "System Uptime   :  $uphours $upminutes $uptimecek"
-else
-echo -e "System Uptime   :  $uphours $upminutes"
-fi
-echo -e "IP-VPS          :  $IP"
-echo -e "ISP-VPS         :  $ISPVPS"
-
 # // Export Color & Information
 export RED='\033[0;31m'
 export GREEN='\033[0;32m'
@@ -63,7 +44,7 @@ else
 fi
 
 # // SSH Websocket Proxy
-xray=$(/etc/init.d/ssh xray | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+xray=$(systemctl status xray | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 if [[ $xray == "running" ]]; then
     status_xray="${GREEN}ON${NC}"
 else
@@ -71,7 +52,7 @@ else
 fi
 
 # // SSH Websocket Proxy
-runn=$(/etc/init.d/ssh runn | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+runn=$(systemctl status runn | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 if [[ $xray == "running" ]]; then
     status_runn="${GREEN}ON${NC}"
 else
@@ -86,9 +67,9 @@ echo -e "□ Sever Uptime        = $( uptime -p  | cut -d " " -f 2-10000 ) "
 echo -e "□ Current Time        = $( date -d "0 days" +"%d-%m-%Y | %X" )"
 echo -e "□ Current Domain      = $( cat /etc/xray/domain )"
 echo -e "□ Server IP           = ${IP}"
-echo -e "□ ISP           = ${ISPVPS}"
+echo -e "□ ISP                 = ${ISPVPS}"
 echo -e "□ Clients Name        = $Name"
-echo -e "□ Exfired Script VPS   = $Exp2"
+echo -e "□ Exfired Script VPS  = $Exp2"
 echo -e "□ Time Reboot VPS     = 00:00 ${GREEN}( Jam 12 Malam )${NC}"
 echo -e "□ License Limit       = 3 VPS ${GREEN}( Persatu IP VPS )${NC}"
 echo -e "□ AutoScript By Dev   = XDRG ${GREEN}( MasWayVPN )${NC}"
