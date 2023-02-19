@@ -28,7 +28,7 @@ wget -O add-akun "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/men
 wget -O updatedll "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/updatedll.sh"
 wget -O add-akun "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/add-akun.sh"
 wget -O delete-akun "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/delete-akun.sh"
-wget -O certv2ray "https://raw.githubusercontent.com/MyMasWayVPN/MW-XTAY/main/menu/certv2ray.sh"
+wget -O certv2ray "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/certv2ray.sh"
 wget -O restart-xray "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/restart-xray.sh"
 wget -O xmenu "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/xmenu.sh"
 wget -O auto-pointing "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/auto-pointing.sh"
