@@ -12,11 +12,10 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 echo "Checking VPS"
 #########################
 IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
-if [ "$MYIP = $IZIN" ]; then
+if [ $MYIP = $IZIN ]; then
 echo -e "\e[32mPermission Accepted...\e[0m"
 else
 echo -e "\e[31mPermission Denied!\e[0m";
-rm ip.sh
 exit 0
 fi
 # Color
@@ -30,6 +29,16 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # =========================================
 # Getting
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo "Checking VPS"
+#########################
+IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m"
+else
+echo -e "\e[31mPermission Denied!\e[0m";
+exit 0
+fi
 clear
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
@@ -45,7 +54,7 @@ wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/updatedll.s
 #
 #SELESAI
 clear
-echo "Please Wait"
+PLEASE WAIT
 sleep 5
 certv2ray
 echo " "
