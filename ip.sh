@@ -8,6 +8,16 @@ if [ "$(systemd-detect-virt)" == "openvz" ]; then
 		exit 1
 fi
 # ==========================================
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo "Checking VPS"
+#########################
+IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m"
+else
+echo -e "\e[31mPermission Denied!\e[0m";
+exit 0
+fi
 # Color
 RED='\033[0;31m'
 NC='\033[0m'
@@ -28,7 +38,7 @@ echo "IP=" >> /var/lib/crot/ipvps.conf
 cd
 #install tools/alat
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-tools.sh && chmod +x install-tools.sh && ./install-tools.sh
-wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/menu/main/auto-pointing.sh && chmod +x auto-pointing.sh && ./auto-pointing.sh
+wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/auto-pointing.sh && chmod +x auto-pointing.sh && ./auto-pointing.sh
 #
 #Instal Xray
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
@@ -42,7 +52,7 @@ echo "==========================================================================
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------" | tee -a log-install.txt
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"  | tee -a log-install.txt
-echo -e "    SCRIPT MANTAP-XRAY Multi Port"  | tee -a log-install.txt
+echo -e "    SCRIPT XRAY Multi Port"  | tee -a log-install.txt
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
@@ -82,3 +92,4 @@ rm -rf updatedll.sh
 rm -rf ip.sh
 rm -rf install-xray.sh
 rm -rf install-tools.sh
+
