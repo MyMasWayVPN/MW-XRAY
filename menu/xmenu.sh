@@ -34,6 +34,12 @@ export PURPLE='\033[0;35m'
 export CYAN='\033[0;36m'
 export LIGHT='\033[0;37m'
 export NC='\033[0m'
+ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city )
+WKT=$(curl -s ipinfo.io/timezone )
+DAY=$(date +%A)
+DATE=$(date +%m/%d/%Y)
+IPVPS=$(curl -s ipinfo.io/ip )
 
 # // nginx
 nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
@@ -67,7 +73,7 @@ echo -e "□ Sever Uptime        = $( uptime -p  | cut -d " " -f 2-10000 ) "
 echo -e "□ Current Time        = $( date -d "0 days" +"%d-%m-%Y | %X" )"
 echo -e "□ Current Domain      = $( cat /etc/xray/domain )"
 echo -e "□ Server IP           = ${IP}"
-echo -e "□ ISP                 = ${ISPVPS}"
+echo -e "□ ISP                 = ${ISP}"
 echo -e "□ Clients Name        = $Name"
 echo -e "□ Exfired Script VPS  = $Exp2"
 echo -e "□ Time Reboot VPS     = 00:00 ${GREEN}( Jam 12 Malam )${NC}"
