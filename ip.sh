@@ -53,10 +53,6 @@ wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-xray.sh 
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/updatedll.sh && chmod +x updatedll.sh && ./updatedll.sh
 #
 #SELESAI
-clear
-PLEASE WAIT
-sleep 5
-certv2ray
 echo " "
 echo "Installation has been completed!!"echo " "
 echo "============================================================================" | tee -a log-install.txt
