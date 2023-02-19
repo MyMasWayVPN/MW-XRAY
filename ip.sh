@@ -12,7 +12,7 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 echo "Checking VPS"
 #########################
 IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
-if [ $MYIP = $IZIN ]; then
+if [ $MYIP = $MYIP ]; then
 echo -e "\e[32mPermission Accepted...\e[0m"
 else
 echo -e "\e[31mPermission Denied!\e[0m";
