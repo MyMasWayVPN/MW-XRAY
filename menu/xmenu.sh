@@ -42,9 +42,6 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 clear
-echo -e "\e[36m╒════════════════════════════════════════════╕\033[0m"
-echo -e " \E[0;41;36m                 INFO SERVER                \E[0m"
-echo -e "\e[36m╘════════════════════════════════════════════╛\033[0m"
 uphours=`uptime -p | awk '{print $2,$3}' | cut -d , -f1`
 upminutes=`uptime -p | awk '{print $4,$5}' | cut -d , -f1`
 uptimecek=`uptime -p | awk '{print $6,$7}' | cut -d , -f1`
@@ -91,7 +88,7 @@ clear
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 echo -e "\E[44;1;39m                     ⇱ INFORMASI VPS ⇲                        \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e ""                                                                  "
+echo -e ""                                                                  
 echo -e "\e[33m Operating System     \e[0m:  "`hostnamectl | grep "Operating System" | cut -d ' ' -f5-`	
 echo -e "\e[33m Total Amount Of RAM  \e[0m:  $tram MB"
 echo -e "\e[33m System Uptime        \e[0m:  $uptime "
