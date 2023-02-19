@@ -71,14 +71,85 @@ sed -i '/#vmess$/a\#& '"$user $exp"'\
 sed -i '/#vmessgrpc$/a\#& '"$user $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 
-
+#
+cat>/etc/xray/vmess-$user-tls.json<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/xrayvws",
+      "type": "none",
+      "host": "",
+      "tls": "tls"
+}
+EOF
+cat>/etc/xray/vmess-$user-nontls.json<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "80",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "/xrayvws",
+      "type": "none",
+      "host": "",
+      "tls": "none"
+}
+EOF
+vmess_base641=$( base64 -w 0 <<< $vmess_json1)
+vmess_base642=$( base64 -w 0 <<< $vmess_json2)
+vmesslinkws="vmess://$(base64 -w 0 /etc/xray/vmess-$user-tls.json)"
+nonvmesslinkws="vmess://$(base64 -w 0 /etc/xray/vmess-$user-nontls.json)"
+###
+cat>/etc/xray/vmess-$user-tls.json<<EOF
+      {
+      "v": "4",
+      "ps": "🔰VMESS GRPC TLS ${user}",
+      "add": "${domain}",
+      "port": "443",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "grpc",
+      "path": "vmess-grpc",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "tls"
+}
+EOF
+#
+#GRPC
+cat>/etc/xray/vmess-$user-nontls.json<<EOF
+      {
+      "v": "4",
+      "ps": "🔰VMESS GRPC NONTLS ${user}",
+      "add": "${domain}",
+      "port": "80",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "grpc",
+      "path": "vmess-grpc",
+      "type": "none",
+      "host": "${domain}",
+      "tls": "none"
+}
+EOF
+#GRPC
+vmess_base641=$( base64 -w 0 <<< vmess_json1)
+vmess_base642=$( base64 -w 0 <<< $vmess_json2)
+vmesslinkgrpc="vmess://$(base64 -w 0 /etc/xray/vmess-$user-tls.json)"
+nonvmesslinkgrpc="vmess://$(base64 -w 0 /etc/xray/vmess-$user-nontls.json)"
+rm -rf /etc/xray/vmess-$user-tls.json
+rm -rf /etc/xray/vmess-$user-nontls.json
+#GRPC
+###
 #
 systemctl restart xray
-#buatvmess
-vmesslinkws="vmess://${uuid}@${domain}:443?path=/mw-vmws&security=tls&encryption=none&type=ws#${user}"
-vmesslinknon="vmess://${uuid}@${domain}:80?path=/mw-vmws&encryption=none&type=ws#${user}"
-vmesslinkgrpc="vmess://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=mw-vmgrpc&sni=www.masway.com#${user}"
-
 #buatvless
 vlesslinkws="vless://${uuid}@${domain}:443?path=/mw-vlws&security=tls&encryption=none&type=ws#${user}"
 vlesslinknon="vless://${uuid}@${domain}:80?path=/mw-vlws&encryption=none&type=ws#${user}"
@@ -385,11 +456,13 @@ echo -e "=> WS TLS : /mw-vmws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-vmgrpc" | tee -a /etc/log-create-user.log
 echo -e "=> OPOK   : ws://bugcom/mw-vmws" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Vmess WS/TLS Port 443   : $vmesslinkws" | tee -a /etc/log-create-user.log
+echo -e "Vmess WS TLS    : $vmesslinkws" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Vmess WS Port 80   : $vmesslinknon" | tee -a /etc/log-create-user.log
+echo -e "Vmess GRPC TLS  : $vmesslinkgrpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Vmess GRPC Port 443  : $vmesslinkgrpc" | tee -a /etc/log-create-user.log
+echo -e "Vmess WS HTTP/NONE TLS   : $nonvmesslinkws" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Vmess GRPC HTTP/NONE TLS : $nonvmesslinkgrpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "SCRIPT By MasWayVPN" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log
