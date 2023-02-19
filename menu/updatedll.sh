@@ -47,6 +47,7 @@ chmod +x /usr/bin/certv2ray
 chmod +x certv2ray
 ./certv2ray
 chmod +x restart-xray
+./restart-xray
 chmod +x auto-pointing
 chmod +x cek-port
 
