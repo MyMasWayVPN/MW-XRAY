@@ -11,61 +11,17 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
-dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
-#########################
-
-BURIQ () {
-    curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk > /root/tmp
-    data=( `cat /root/tmp | grep -E "^### " | awk '{print $2}'` )
-    for user in "${data[@]}"
-    do
-    exp=( `grep -E "^### $user" "/root/tmp" | awk '{print $3}'` )
-    d1=(`date -d "$exp" +%s`)
-    d2=(`date -d "$biji" +%s`)
-    exp2=$(( (d1 - d2) / 86400 ))
-    if [[ "$exp2" -le "0" ]]; then
-    echo $user > /etc/.$user.ini
-    else
-    rm -f  /etc/.$user.ini > /dev/null 2>&1
-    fi
-    done
-    rm -f  /root/tmp
-}
-# https://raw.githubusercontent.com/apih46/access/main/ip 
+########################}
 MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | grep $MYIP | awk '{print $2}')
-echo $Name > /usr/local/etc/.$Name.ini
-CekOne=$(cat /usr/local/etc/.$Name.ini)
-
-Bloman () {
-if [ -f "/etc/.$Name.ini" ]; then
-CekTwo=$(cat /etc/.$Name.ini)
-    if [ "$CekOne" = "$CekTwo" ]; then
-        res="Expired"
-    fi
+echo "Checking VPS"
+#########################
+IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m"
 else
-res="Perizinan Diberikan..."
-fi
-}
-
-PERMISSION () {
-    MYIP=$(curl -sS ipv4.icanhazip.com)
-    IZIN=$(curl -sS https://raw.githubusercontent.com/MyMasWayVPN/MyMasWayVPN.github.io/main/wkwkwkwk | awk '{print $4}' | grep $MYIP)
-    if [ "$MYIP" = "$IZIN" ]; then
-    Bloman
-    else
-    res= "Permission Denied!"
-    fi
-    BURIQ
-}
-clear
-PERMISSION
-if [ "$res" = "Permission Accepted..." ]; then
-green "Permission Accepted.."
-else
-red "Permission Denied!"
+echo -e "\e[31mPermission Denied!\e[0m";
 exit 0
+fi
 clear
 source /var/lib/crot/ipvps.conf
 if [[ "$IP" = "" ]]; then
@@ -125,7 +81,7 @@ vlesslinkgrpc="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=no
 
 #buattrojan
 trojanlinkgrpc="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=mw-trgrpc&sni=bug.com#${user}"
-trojanlinkws="trojan://${uuid}@${domain}:443?path=/mw-xraytrws&security=tls&host=${domain}&type=ws&sni=www.masway.com#${user}"
+trojanlinkws="trojan://${uuid}@${domain}:443?path=/mw-trws&security=tls&host=${domain}&type=ws&sni=www.masway.com#${user}"
 #buatshadowsocks
 #
 cipher="aes-128-gcm"
@@ -137,7 +93,7 @@ echo $cipher:$uuid > /tmp/log
 shadowsocks_base64=$(cat /tmp/log)
 echo -n "${shadowsocks_base64}" | base64 > /tmp/log1
 shadowsocks_base64e=$(cat /tmp/log1)
-shadowsockslink="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;path=/mw-xrayssws;host=$domain;tls#${user}"
+shadowsockslink="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;path=/mw-ssws;host=$domain;tls#${user}"
 shadowsockslink1="ss://${shadowsocks_base64e}@$domain:$tls?plugin=xray-plugin;mux=0;serviceName=mw-ssgrpc;host=$domain;tls#${user}"
 systemctl restart xray
 rm -rf /tmp/log
@@ -208,7 +164,7 @@ cat > /home/vps/public_html/ss-ws-$user.txt <<-END
           "headers": {
             "Host": "$domain"
           },
-          "path": "/mw-xrayssws"
+          "path": "/mw-ssws"
         }
       },
       "tag": "proxy"
@@ -375,9 +331,9 @@ echo -e ""
 echo -e "Protokol VPN: TROJAN" | tee -a /etc/log-create-user.log
 echo -e "Network: WS/GRPC" | tee -a /etc/log-create-user.log
 echo -e "====== Path =======" | tee -a /etc/log-create-user.log
-echo -e "=> WS TLS : /mw-xraytrws" | tee -a /etc/log-create-user.log
+echo -e "=> WS TLS : /mw-trws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-trgrpc" | tee -a /etc/log-create-user.log
-echo -e "=> OPOK   : ws://bugcom/mw-xraytrws" | tee -a /etc/log-create-user.log
+echo -e "=> OPOK   : ws://bugcom/mw-trws" | tee -a /etc/log-create-user.log
 echo -e "====== Import Config From Clipboard =======" | tee -a /etc/log-create-user.log
 echo -e "Link Config WS TLS   : $trojanlinkws" | tee -a /etc/log-create-user.log
 echo -e "Link Config GRPC TLS : $trojanlinkgrpc" | tee -a /etc/log-create-user.log
@@ -387,11 +343,11 @@ echo -e "Protokol VPN: SHADOWSOCKS" | tee -a /etc/log-create-user.log
 echo -e "Network: WS/GRPC" | tee -a /etc/log-create-user.log
 echo -e "Method Cipers : aes-128-gcm" | tee -a /etc/log-create-user.log
 echo -e "====== Path =======" | tee -a /etc/log-create-user.log
-echo -e "=> WS TLS : /mw-xrayssws" | tee -a /etc/log-create-user.log
+echo -e "=> WS TLS : /mw-ssws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-ssgrpc" | tee -a /etc/log-create-user.log
-echo -e "=> OPOK   : ws://bugcom/mw-xrayssws" | tee -a /etc/log-create-user.log
+echo -e "=> OPOK   : ws://bugcom/mw-ssws" | tee -a /etc/log-create-user.log
 echo -e "======Custom Import Config From URL =======" | tee -a /etc/log-create-user.log
-echo -e "URL Custom Config WS TLS   : http://${domain}:89/ss-ws-$user.txt" | tee -a /etc/log-create-user.log
+echo -e "URL Custom Config WS TLS   : http://${domain}:89/mw-ssws-$user.txt" | tee -a /etc/log-create-user.log
 echo -e "URL Custom Config GRPC TLS : http://${domain}:89/mw-ssgrpc-$user.txt" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e ""
@@ -409,9 +365,9 @@ echo -e "Protokol VPN: VMESS" | tee -a /etc/log-create-user.log
 echo -e "Alter ID: 0" | tee -a /etc/log-create-user.log
 echo -e "Network: WS/GRPC" | tee -a /etc/log-create-user.log
 echo -e "====== Path =======" | tee -a /etc/log-create-user.log
-echo -e "=> WS TLS : /mw-vmessws" | tee -a /etc/log-create-user.log
+echo -e "=> WS TLS : /mw-vmws" | tee -a /etc/log-create-user.log
 echo -e "=> GRPC   : mw-vmgrpc" | tee -a /etc/log-create-user.log
-echo -e "=> OPOK   : ws://bugcom/mw-vmessws" | tee -a /etc/log-create-user.log
+echo -e "=> OPOK   : ws://bugcom/mw-vmws" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "SCRIPT By MasWayVPN" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log

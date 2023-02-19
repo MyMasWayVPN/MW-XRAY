@@ -1,4 +1,6 @@
 #!/bin/bash
+clear
+#!/bin/bash
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo "Checking VPS"
 #########################
@@ -142,21 +144,21 @@ echo -e ""
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 echo -e "\E[44;1;39m                     ⇱ MENU LAYANAN ⇲                         \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo "▪ 1. Create All Account Xray"
-echo "▪ 2. Delete All Account Xray"
-echo "▪ 3. Domain Name Checker"
-echo "▪ 4. Check Public IP"
-echo "▪ 5. Update Core"
-echo "▪ 6. Renew Install Script"
-echo "▪ 7. Restart Service XRAY"
-echo "▪ 8. Renew Cert"
-echo "▪ 9.Add Domain"
-echo "▪ 10.Speedtest Server"
-echo "▪ 11.Reboot"
-echo "▪ 12.Exit"
-echo "▪ 13.Info Script"
-echo "▪ 14.Auto Pointing Subdomain"
-echo "▪ 15.Check All Port Service"
+echo "▪ 01. Create All Account Xray"
+echo "▪ 02. Delete All Account Xray"
+echo "▪ 03. Domain Name Checker"
+echo "▪ 04. Check Public IP"
+echo "▪ 05. Update Core"
+echo "▪ 06. Renew Install Script"
+echo "▪ 07. Restart Service XRAY"
+echo "▪ 08. Renew Cert"
+echo "▪ 09. Add Domain"
+echo "▪ 10. Speedtest Server"
+echo "▪ 11. Reboot"
+echo "▪ 12. Exit"
+echo "▪ 13. Info Script"
+echo "▪ 14. Auto Pointing Subdomain"
+echo "▪ 15. Check All Port Service"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 read -p "     Select From Options [1-15 or x] :  " xmenu
 case $xmenu in 
