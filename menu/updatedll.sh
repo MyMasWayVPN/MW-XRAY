@@ -43,7 +43,7 @@ chmod +x add-akun
 chmod +x delete-akun
 chmod +x updatedll
 chmod +x add-akun
-chmod +x certv2ray
+chmod +x /usr/bin/certv2ray
 chmod +x restart-xray
 chmod +x auto-pointing
 chmod +x cek-port
