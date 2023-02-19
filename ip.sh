@@ -16,6 +16,7 @@ if [ $MYIP = $IZIN ]; then
 echo -e "\e[32mPermission Accepted...\e[0m"
 else
 echo -e "\e[31mPermission Denied!\e[0m";
+rm ip.sh
 exit 0
 fi
 # Color
