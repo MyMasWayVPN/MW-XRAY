@@ -103,7 +103,7 @@ echo "▪ 11. Reboot"
 echo "▪ 12. Exit"
 echo "▪ 13. Info Script"
 echo "▪ 14. Auto Pointing Subdomain"
-echo "▪ 15. Check All Port Service"
+echo "▪ 15. Check All Service"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 read -p "     Select From Options [1-15 or x] :  " xmenu
 case $xmenu in 
@@ -150,7 +150,7 @@ cat /root/log-install.txt
 auto-pointing
 ;;
 15)
-cek-port
+running
 ;;
 *)
 echo "Lhu Salah Input Nomor Tod !"
