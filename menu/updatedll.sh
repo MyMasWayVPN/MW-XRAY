@@ -34,12 +34,14 @@ wget -O xmenu "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/x
 wget -O auto-pointing "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/auto-pointing.sh"
 wget -O cek-port "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/cek-port.sh"
 wget -O xmenu "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/xmenu.sh"
+wget -O running "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/running.sh"
 
 #
 chmod +x /usr/bin/updatedll
 chmod +x /usr/bin/xmenu
 chmod +x xmenu
 chmod +x add-akun
+chmod +x running
 chmod +x delete-akun
 chmod +x updatedll
 chmod +x add-akun
