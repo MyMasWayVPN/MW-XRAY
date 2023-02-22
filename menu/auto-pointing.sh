@@ -82,5 +82,7 @@ echo $SUB_DOMAIN > /root/domain
 # / / Make Main Directory
 mkdir -p /usr/bin/xray
 mkdir -p /etc/xray
+echo $SUB_DOMAIN > /etc/xray/domain
+echo $SUB_DOMAIN > /root/domain
 cp /root/domain /etc/xray
-rm -f /root/cf.sh
+rm -f /root/auto-pointing.sh
