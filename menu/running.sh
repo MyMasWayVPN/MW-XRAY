@@ -136,24 +136,10 @@ CITY=$( curl -s ipinfo.io/city )
 #clear
 
 # CHEK STATUS 
-status_openvpn=$(/etc/init.d/openvpn status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+#status_openvpn=$(/etc/init.d/openvpn status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 xray_status=$(systemctl status xray | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
 nginx_status=$(systemctl status nginx | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
 runn_status="$(systemctl status runn | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
-status_dropbear=$(/etc/init.d/dropbear status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-status_stunnel4=$(/etc/init.d/stunnel5 status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-status_vnstat=$(/etc/init.d/vnstat status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-status_ssh=$(/etc/init.d/ssh status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-status_fail2ban=$(/etc/init.d/fail2ban status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-
-wstls=$(systemctl status ws-tls | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-wsdrop=$(systemctl status ws-nontls | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-wsovpn=$(systemctl status ws-ovpn | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-#wsopen=$(systemctl status ws-openssh | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-osslh=$(systemctl status sslh | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-ohp=$(systemctl status dropbear-ohp | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-ohq=$(systemctl status openvpn-ohp | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-ohr=$(systemctl status ssh-ohp | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 
 # COLOR VALIDATION
 RED='\033[0;31m'
@@ -185,48 +171,6 @@ if [[ $runn_status == "active" ]]; then
   status_runn=" ${GREEN}Running ${NC}( No Error )"
 else
   status_runn="${RED}  Not Running ${NC}  ( Error )"
-fi
-
-# STATUS SERVICE OPENVPN
-if [[ $status_openvpn == "active" ]]; then
-  openvpn_status=" ${GREEN}Running ${NC}( No Error )"
-else
-  openvpn_status="${RED}  Not Running ${NC}  ( Error )"
-fi
-
-# STATUS SERVICE SSH
-if [[ $status_ssh == "active" ]]; then
-  ssh_status=" ${GREEN}Running ${NC}( No Error )"
-else
-  ssh_status="${RED}  Not Running ${NC}  ( Error )"
-fi
-
-# STATUS SERVICE FAIL2BAN
-if [[ $status_fail2ban == "active" ]]; then
-  fail2ban_status=" ${GREEN}Running ${NC}( No Error )"
-else
-  fail2ban_status="${RED}  Not Running ${NC}  ( Error )"
-fi
-
-# STATUS SERVICE DROPBEAR
-if [[ $status_dropbear == "active" ]]; then
-  dropbear_status=" ${GREEN}Running ${NC}( No Error )"
-else
-  dropbear_status="${RED}  Not Running ${NC}  ( Error )"
-fi
-
-# STATUS SERVICE STUNNEL4
-if [[ $status_stunnel4 == "active" ]]; then
-  stunnel4_status=" ${GREEN}Running ${NC}( No Error )"
-else
-  stunnel4_status="${RED}  Not Running ${NC}  ( Error )"
-fi
-
-# STATUS SERVICE VNSTAT
-if [[ $status_vnstat == "active" ]]; then
-  vnstat_status=" ${GREEN}Running ${NC}( No Error )"
-else
-  vnstat_status="${RED}  Not Running ${NC}  ( Error )"
 fi
 
 

@@ -130,7 +130,7 @@ cat>/etc/xray/vmess-$user-tls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/xrayvws",
+      "path": "/mw-vmws",
       "type": "none",
       "host": "",
       "tls": "tls"
@@ -145,7 +145,7 @@ cat>/etc/xray/vmess-$user-nontls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/xrayvws",
+      "path": "/mw-vmws",
       "type": "none",
       "host": "",
       "tls": "none"
@@ -165,7 +165,7 @@ cat>/etc/xray/vmess-$user-tls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "grpc",
-      "path": "vmess-grpc",
+      "path": "mw-vmgrpc",
       "type": "none",
       "host": "${domain}",
       "tls": "tls"
@@ -182,7 +182,7 @@ cat>/etc/xray/vmess-$user-nontls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "grpc",
-      "path": "vmess-grpc",
+      "path": "mw-vmgrpc",
       "type": "none",
       "host": "${domain}",
       "tls": "none"
