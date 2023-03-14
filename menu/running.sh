@@ -135,11 +135,6 @@ CITY=$( curl -s ipinfo.io/city )
 #REGION=$( curl -s ipinfo.io/region )
 #clear
 
-# CHEK STATUS 
-#status_openvpn=$(/etc/init.d/openvpn status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-xray_status=$(systemctl status xray | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
-nginx_status=$(systemctl status nginx | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
-runn_status="$(systemctl status runn | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
 
 # COLOR VALIDATION
 RED='\033[0;31m'
@@ -152,26 +147,30 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 clear
 
-# STATUS SERVICE XRAY
-if [[ $xray_status == "running" ]]; then
-  status_xray=" ${GREEN}Running ${NC}( No Error )"
+# // nginx
+nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
+if [[ $nginx == "running" ]]; then
+    status_nginx="${GREEN}ON${NC}"
 else
-  status_xray="${RED}  Not Running ${NC}  ( Error )"
+    status_nginx="${RED}OFF${NC}"
 fi
 
-# STATUS SERVICE NGINX
-if [[ $nginx_status == "running" ]]; then 
-   status_nginx=" ${GREEN}Running ${NC}( No Error )"
+# // Xray
+xray=$(systemctl status xray | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+if [[ $xray == "running" ]]; then
+    status_xray="${GREEN}ON${NC}"
 else
-   status_nginx="${RED}  Not Running ${NC}  ( Error )"
+    status_xray="${RED}OFF${NC}"
 fi
 
-# STATUS SERVICE RUN
-if [[ $runn_status == "active" ]]; then
-  status_runn=" ${GREEN}Running ${NC}( No Error )"
+# // runn
+runn=$(systemctl status runn | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+if [[ $xray == "running" ]]; then
+    status_runn="${GREEN}ON${NC}"
 else
-  status_runn="${RED}  Not Running ${NC}  ( Error )"
+    status_runn="${RED}OFF${NC}"
 fi
+
 
 
 # TOTAL RAM

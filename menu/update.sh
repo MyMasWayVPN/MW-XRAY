@@ -93,6 +93,7 @@ wget -O delete-akun "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/
 wget -O certv2ray "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/xray/certv2ray.sh"
 wget -O restart-xray "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/restart-xray.sh"
 wget -O menu "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/menu.sh"
+wget -O infoxxx "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/infoxxx.sh"
 wget -O add-host "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/add-host.sh"
 #wget -O cek-port "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/cek-port.sh"
 wget -O menu "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu/menu.sh"
@@ -101,6 +102,7 @@ wget -O running "https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/menu
 #
 chmod +x /usr/bin/update
 chmod +x /usr/bin/menu
+chmod +x infoxxx
 chmod +x menu
 chmod +x add-akun
 chmod +x running
