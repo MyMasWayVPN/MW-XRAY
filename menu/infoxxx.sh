@@ -145,4 +145,4 @@ echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━�
 echo -e ""
 echo -e " [ ${GREEN}XRAY${NC} : ${status_xray} ]      [ ${GREEN}NGINX${NC} : ${status_nginx} ]      [ ${GREEN}RUNNING${NC} : ${status_runn} ]"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "Tulis${CYAN} menu ${NC}Untuk Melanjutkan"
+echo -e "                Tulis ${GREEN}[${NC}${CYAN}menu${NC}${GREEN}] ${NC} Untuk Melanjutkan"
