@@ -144,4 +144,5 @@ echo -e "\E[44;1;39m                     ⇱ STATUS LAYANAN ⇲                 
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 echo -e ""
 echo -e " [ ${GREEN}XRAY${NC} : ${status_xray} ]      [ ${GREEN}NGINX${NC} : ${status_nginx} ]      [ ${GREEN}RUNNING${NC} : ${status_runn} ]"
-echo  "Tulis${CYAN} menu ${NC}Untuk Melanjutkan"
+echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
+echo -e "Tulis${CYAN} menu ${NC}Untuk Melanjutkan"
