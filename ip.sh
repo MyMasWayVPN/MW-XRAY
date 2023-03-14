@@ -253,7 +253,6 @@ wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-tools.sh
 
 #Instal Xray
 clear
-figlet -f slant Install-Xray | lolcat
 sleep 2
 echo "-------------------------------------" | lolcat
 echo "     Install Xray " | lolcat
@@ -263,7 +262,6 @@ clear
 wget https://raw.githubusercontent.com/MyMasWayVPN/MW-XRAY/main/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
 #install xmenu
 clear
-figlet -f slant Install-Menu | lolcat
 sleep 2
 echo "-------------------------------------" | lolcat
 echo "     Install Menu " | lolcat
